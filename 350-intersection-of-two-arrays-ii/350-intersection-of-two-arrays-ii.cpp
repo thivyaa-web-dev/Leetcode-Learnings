@@ -1,3 +1,8 @@
+// Idea:
+// We use an unordered_map to count the frequency of each number in nums1.
+// Then, while iterating nums2, we count how many numbers we have in common.
+
+
 class Solution {// Using Map & without sort
 public:
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
