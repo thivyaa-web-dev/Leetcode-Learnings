@@ -1,7 +1,4 @@
-// Concept
-// First, we have some edge cases.
 // Then, we use simple DP: for each house, we can't rob two adjacent houses. So either we rob the previous one - dp[i-1], or the two before and the current one - nums[i]+dp[i-2].
-
 // Time Complexity: O(n)
 // Space Complexity: O(n)
 
