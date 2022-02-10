@@ -7,9 +7,9 @@
 
 class Solution {
 public:
-            int dp[46]; //making dp array size of one more than given constraints
+        int dp[46]; //making dp array size of one more than given constraints
 
-    int climbStairs(int n) {
+        int climbStairs(int n) {
         
         if(dp[n]!=0) return dp[n];
         
