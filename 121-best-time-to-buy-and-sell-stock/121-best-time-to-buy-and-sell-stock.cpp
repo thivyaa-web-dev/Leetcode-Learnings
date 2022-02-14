@@ -2,6 +2,9 @@
 
 //How to get maxPro? Just get the larger one between current maxPro and prices[i] - minPrice.
 
+// this implementation is similar to kadane's algorithm, if you observe properly 
+// the only concept is , you need to buy the stock when the price is low and sell it when it is high/
+
 
 class Solution {
 public:
