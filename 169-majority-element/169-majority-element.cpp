@@ -1,18 +1,15 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        int count = 0;
-        int candidate = 0;
-
-        for (int num : nums) {
-            if (count == 0) {
-                candidate = num;
+        //this can be done using hashmap 
+        //keep storing the elements in the frequency table, and if its greater than n/2 retrun it 
+        unordered_map<int, int>mpp;
+        for(int it:nums){
+            if(++mpp[it]>nums.size()/2){
+                return it;
             }
-            if(num==candidate) count += 1; 
-            else count -= 1; 
         }
-
-        return candidate;
+        return 0;
         
     }
 };
