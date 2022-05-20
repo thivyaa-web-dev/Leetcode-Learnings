@@ -12,11 +12,13 @@ public:
                 if(i==0||j==0)
                     dp[i][j] = 1; 
                 else
+    //if you are not in either first row or column, then you need to ust take the sum of the prev row and column 
                     dp[i][j] = dp[i-1][j]+dp[i][j-1];
                 
                 
               }
         }
+//after the entire thingy is done, you just need to return the last cell value
         return dp[m-1][n-1];
         
     }
