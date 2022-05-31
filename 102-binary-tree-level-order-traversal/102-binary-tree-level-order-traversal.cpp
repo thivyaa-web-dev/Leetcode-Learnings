@@ -1,27 +1,35 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
 class Solution {
 public:
-    vector<vector<int> > levelOrder(TreeNode *root) {
-        vector<vector<int> >  result;
-        if (!root) return result;
-        queue<TreeNode*> q;
-        q.push(root);
-        q.push(NULL);
-        vector<int> cur_vec;
-        while(!q.empty()) {
-            TreeNode* t = q.front();
-            q.pop();
-            if (t==NULL) {
-                result.push_back(cur_vec);
-                cur_vec.resize(0);
-                if (q.size() > 0) {
-                    q.push(NULL);
-                }
-            } else {
-                cur_vec.push_back(t->val);
-                if (t->left) q.push(t->left);
-                if (t->right) q.push(t->right);
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> answer;
+        if(!root) return answer;  //if root is NULL then return
+        queue<TreeNode*> q;  //for storing nodes
+        q.push(root);  //push root initially to the queue
+        while(!q.empty())  //while queue is not empty go and follow few steps
+        {
+            int size=q.size();  //storing queue size for while loop
+            vector<int> v;  //for storing nodes at the same level
+            while(size--)  
+            {
+                TreeNode* temp=q.front();  //store front node of queue  and pop it from queue
+                q.pop();
+                v.push_back(temp->val);  //push it to v
+                if(temp->left) q.push(temp->left);  //if left subtree exist for temp then store it into the queue
+                if(temp->right) q.push(temp->right);  //if right subtree exist for temp then store it into the queue
             }
+            answer.push_back(v);  //push v into answer, as v consist of all the nodes of current level
         }
-        return result;
+        return answer;  //return the answer
     }
 };
