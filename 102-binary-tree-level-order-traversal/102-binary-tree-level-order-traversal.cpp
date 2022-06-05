@@ -12,24 +12,27 @@
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
-        vector<vector<int>> answer;
-        if(!root) return answer;  //if root is NULL then return
-        queue<TreeNode*> q;  //for storing nodes
-        q.push(root);  //push root initially to the queue
-        while(!q.empty())  //while queue is not empty go and follow few steps
-        {
-            int size=q.size();  //storing queue size for while loop
-            vector<int> v;  //for storing nodes at the same level
-            while(size--)  
-            {
-                TreeNode* temp=q.front();  //store front node of queue  and pop it from queue
+    vector<vector<int>> ans; //we are using a ds that is going to store list or level wise traversals 
+    if(root == NULL) return ans; //if the tree that is given to us, is null we are going to return empty 
+    queue<TreeNode*>q;
+        q.push(root);
+        while(!q.empty()){
+            int size = q.size(); //whatever is the size of the q , I will traverse for that 
+            vector<int>level;
+            for(int i=0;i<size;i++){
+                TreeNode*node = q.front();
                 q.pop();
-                v.push_back(temp->val);  //push it to v
-                if(temp->left) q.push(temp->left);  //if left subtree exist for temp then store it into the queue
-                if(temp->right) q.push(temp->right);  //if right subtree exist for temp then store it into the queue
+                if(node->left!=NULL) q.push(node->left);
+                if(node->right!=NULL) q.push(node->right);
+                level.push_back(node->val);
+
             }
-            answer.push_back(v);  //push v into answer, as v consist of all the nodes of current level
+            ans.push_back(level);
+            
         }
-        return answer;  //return the answer
+        return ans;
+        
+        
+       
     }
 };
