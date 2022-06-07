@@ -10,19 +10,24 @@
  * };
  */
 class Solution {
-public:
-    int dfs(TreeNode* root) {
-        if (!root) return 0;
-        int left = dfs(root->left), right = dfs(root->right);
-        diameter = max(diameter, left + right);
-        return max(left, right) + 1;
-    }
+	public:
+int ans=0;
+
+int height(TreeNode* root)
+{
+    if(!root) return 0;
     
-    int diameterOfBinaryTree(TreeNode* root) {
-        dfs(root);
-        return diameter;
-    }
+    int lHeight = height(root->left);
+    int rHeight = height(root->right);
     
-private:
-    int diameter = 0;
+    ans= max(ans, 1 + lHeight + rHeight);
+    return 1+ max( lHeight , rHeight);
+
+}
+
+int diameterOfBinaryTree(TreeNode* root) {
+    if(!root) return 0;
+    height(root);
+    return ans-1;
+}
 };
