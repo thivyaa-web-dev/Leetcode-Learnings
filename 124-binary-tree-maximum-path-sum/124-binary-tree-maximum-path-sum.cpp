@@ -10,23 +10,19 @@
  * };
  */
 class Solution {
-    int sum;
 public:
     int maxPathSum(TreeNode* root) {
-        sum = INT_MIN;
-        help(root);
-        return sum;
-        
+    int maxi = INT_MIN;
+    //call a function and pass root and maximum 
+        maxPathDown(root, maxi);
+        return maxi; 
     }
-    
-    int help(TreeNode*root){
-        if(!root)return 0;
-        int left = max(0, help(root->left));
-        int right = max(0, help(root->right));
-        //embed the max value and find it 
-        sum = max(sum, left+right+root->val);
-        return max(left, right)+root->val;
+    int maxPathDown(TreeNode*node, int&maxi){
+        if(node == NULL) return 0;
+        int left = max(0,maxPathDown(node->left, maxi));
+        int right = max(0,maxPathDown(node->right, maxi));
+        maxi = max(maxi,left+right+node->val);
+        return max(left, right)+node->val;
 
-        
     }
 };
