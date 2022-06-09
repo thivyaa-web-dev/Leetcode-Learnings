@@ -99,12 +99,16 @@ class Solution {
         // Your Code Here
         vector<int>ans;
         if(root == NULL) return ans;
+        //next you have a map data strucutre
         map<int,int>mpp;
+        //you have a queue which stores a node and an integer
         queue<pair<Node*,int>>q;
         q.push({root,0});
+        //when the q is not empty, i'll do the level order traversal
         while(!q.empty()){
             auto it = q.front();
             q.pop();
+        //just make sure that you have the line, and on that line insert the node
             Node*node = it.first;
             int line = it.second;
             mpp[line] = node->data;
