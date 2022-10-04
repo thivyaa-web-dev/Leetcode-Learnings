@@ -11,10 +11,16 @@
  */
 class Solution {
 public:
-    bool hasPathSum(TreeNode* root, int sum) {
-        if(!root)return false;                                         //Terminating Condition
-        sum=sum-root->val;                                             //Body
-        if(sum==0&&!root->left&&!root->right)return true;              //body
-        return hasPathSum(root->left,sum)||hasPathSum(root->right,sum);//Propagation
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        if(root == NULL) return false;
+        
+        if(root->left == NULL && root->right == NULL){
+            return root->val == targetSum;
+        
+        }
+        //check if the path exists through either of the child nodes 
+        return hasPathSum(root->left, targetSum-root->val) || hasPathSum(root->right,targetSum-root->val);
+        
+        
     }
 };
